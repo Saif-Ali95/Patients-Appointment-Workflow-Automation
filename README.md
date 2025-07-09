@@ -1,6 +1,8 @@
 # Patients-Appointment-Workflow-Automation
 Clinic Appointment Automation (n8n Workflow)
 Automates appointment confirmation, rescheduling, and cancellation via Google Sheets, Calendar, and Gmail.
+
+
 Workflow Overview
 Three main flows in this n8n workflow:
 
