@@ -44,7 +44,6 @@ In Query and Update nodes, select your target Sheet and Tab
 Ensure correct column mapping (e.g., Patient ID, Status)
 Customize Email Templates
 Adjust the Appointment, Reschedule, and Cancel email nodes
-Use variables like {{ $json.AppointmentDate }}, {{ $json.PatientName }}, and {{ $('Code').item.json.time }}
 
 🕑 Execution Flow
 A. 🆕 New Appointment Flow
