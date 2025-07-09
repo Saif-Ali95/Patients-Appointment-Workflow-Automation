@@ -1,0 +1,1168 @@
+{
+  "name": "Patient Appointments",
+  "nodes": [
+    {
+      "parameters": {
+        "sendTo": "={{ $('Patients Appointments').item.json.Email }}",
+        "subject": "=Hi {{ $('Patients Appointments').item.json['Patient Name'] }}, Your Appointment is Scheduled on {{ $('Patients Appointments').item.json['Appointment Date'] }}",
+        "message": "=<!DOCTYPE html>\n<html lang=\"en-US\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Appointment Notification</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      background-color: #f2f3f8;\n      font-family: 'Open Sans', sans-serif;\n    }\n    a:hover { text-decoration: underline !important; }\n    .wrapper {\n      max-width: 670px;\n      margin: 0 auto;\n      background: #ffffff;\n      border-radius: 8px;\n      box-shadow: 0 4px 12px rgba(0,0,0,0.05);\n      overflow: hidden;\n    }\n    .header {\n      background: #0063B1;\n      padding: 20px;\n      text-align: center;\n      color: #ffffff;\n    }\n    .header img {\n      width: 50px;\n      margin-bottom: 10px;\n    }\n    .content {\n      padding: 30px;\n      color: #333333;\n      line-height: 1.5;\n    }\n    .title {\n      font-size: 24px;\n      margin-bottom: 10px;\n    }\n    .details {\n      margin: 20px 0;\n      border-collapse: collapse;\n      width: 100%;\n    }\n    .details td {\n      padding: 8px 5px;\n      border-bottom: 1px solid #eeeeee;\n    }\n    .details td.label {\n      font-weight: bold;\n      color: #555555;\n      width: 40%;\n    }\n    .buttons {\n      text-align: center;\n      margin: 30px 0;\n    }\n    .btn {\n      display: inline-block;\n      padding: 12px 24px;\n      color: #ffffff !important;\n      border-radius: 4px;\n      text-decoration: none;\n      font-weight: bold;\n      margin: 0 8px;\n    }\n    .btn-confirm { background-color: #28a745; }\n    .btn-reschedule { background-color: #ffc107; }\n    .btn-cancel { background-color: #dc3545; }\n    .footer {\n      background: #f7f7f7;\n      padding: 20px;\n      font-size: 12px;\n      color: #777777;\n      text-align: center;\n    }\n  </style>\n</head>\n<body>\n  <table width=\"100%\" bgcolor=\"#f2f3f8\" cellpadding=\"0\" cellspacing=\"0\">\n    <tr>\n      <td align=\"center\" style=\"padding: 40px 0;\">\n        <table class=\"wrapper\">\n          <tr>\n            <td class=\"header\">\n              <img src=\"https://yourclinic.com/logo.png\" alt=\"Clinic Logo\">\n              <h1>Appointment Notification</h1>\n            </td>\n          </tr>\n          <tr>\n            <td class=\"content\">\n              <p class=\"title\">Hi {{ $('Patients Appointments').item.json['Patient Name'] }},</p>\n              <p>Your appointment is scheduled on:{{ $('Patients Appointments').item.json['Appointment Date'] }}</p>\n              <table class=\"details\">\n                <tr>\n                  <td class=\"label\">Patient Name:</td>\n                  <td>{{ $('Patients Appointments').item.json['Patient Name'] }}</td>\n                </tr>\n                <tr>\n                  <td class=\"label\">Date:</td>\n                  <td>{{ $('Patients Appointments').item.json['Appointment Date'] }}</td>\n                </tr>\n\n<tr>\n                  <td class=\"label\">Time:</td>\n                  <td>{{ $('Patients Appointments').item.json['Appointment Time'] }}</td>\n                </tr>\n                <tr>\n                  <td class=\"label\">Provider:</td>\n                  <td>{{ $('Patients Appointments').item.json['Provider '] }}</td>\n                </tr>\n                <tr>\n                  <td class=\"label\">Address:</td>\n                  <td>123 Main St, Anytown, USA</td>\n                </tr>\n              </table>\n\n              <div class=\"buttons\">\n                <a href=\"https://periscope-tech.app.n8n.cloud/webhook/f0616050-ffa1-4f17-a199-9a2bc3ef3241//webhook/confirm?appointmentID={{ $json.id }}&Patient ID={{ $('Patients Appointments').item.json['Patient ID'] }}&answer=yes\"\n                   class=\"btn btn-confirm\">\n                  Confirm\n                </a>\n                <a href=\"https://periscope-tech.app.n8n.cloud/form-test/719525ce-3dce-4fc7-b7ef-bfb55c309aad?appointmentID={{ $json.id }}&Patient ID={{ $('Patients Appointments').item.json['Patient ID'] }}\"\n\" \n                   class=\"btn btn-reschedule\">\n                  Reschedule\n                </a>\n                <a href=\"https://periscope-tech.app.n8n.cloud/webhook/2591b3a5-3339-428f-af34-9e3e0234cd38/webhook/cancel?appointmentID={{ $json.id }}&Patient ID={{ $('Patients Appointments').item.json['Patient ID'] }}&answer=yes\"\" \n                   class=\"btn btn-cancel\">\n                  Cancel\n                </a>\n              </div>\n\n              <p>Please confirm your appointment at least 24 hours in advance to avoid any cancellation fees. If you'd like to reschedule or cancel, you can do so using the buttons above.</p>\n\n              <p>Thank you,<br>Your Clinic Name<br>(555) 123‑4567</p>\n            </td>\n          </tr>\n          <tr>\n            <td class=\"footer\">\n              <p>&copy; {{ $now.split('T')[0].slice(0,4) }} Your Clinic Name • 123 Main St, Anytown, USA • (555) 123‑4567</p>\n              <p>Please do not reply to this email. For questions, contact us at <a href=\"mailto:support@yourclinic.com\">support@yourclinic.com</a>.</p>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n  </table>\n</body>\n</html>\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        160,
+        -40
+      ],
+      "id": "68979f02-d33a-45d1-a0b9-473a426c7edd",
+      "name": "Send a message",
+      "webhookId": "8ceffa80-0093-4c4e-aafe-0feef336979f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "A7QcM8TfC6CSYSCX",
+          "name": "Gmail account 3"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "path": "f0616050-ffa1-4f17-a199-9a2bc3ef3241//webhook/confirm",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        -560
+      ],
+      "id": "1c44b901-4042-423d-8040-ef8238213dcd",
+      "name": "Confirm",
+      "webhookId": "f0616050-ffa1-4f17-a199-9a2bc3ef3241"
+    },
+    {
+      "parameters": {
+        "path": "2591b3a5-3339-428f-af34-9e3e0234cd38/webhook/cancel",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        -220
+      ],
+      "id": "6a0ac015-ac26-4324-8ba8-dbf9a052ce52",
+      "name": "Cancel",
+      "webhookId": "2591b3a5-3339-428f-af34-9e3e0234cd38"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "saif.cool95@gmail.com",
+          "mode": "list",
+          "cachedResultName": "saif.cool95@gmail.com"
+        },
+        "eventId": "={{ $json.appointmentID }}",
+        "updateFields": {
+          "end": "={{ $json.newEnd }}",
+          "start": "={{ $json.newStart }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        -220,
+        -380
+      ],
+      "id": "0f66ac51-e51a-43aa-a135-5a3137e50beb",
+      "name": "Update an event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "qN0SnBO4yZnXvyft",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "Reschedule Your Appointment",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "New Date",
+              "fieldType": "date"
+            },
+            {
+              "fieldLabel": "New Time",
+              "placeholder": "HH:MM AM/PM"
+            },
+            {
+              "fieldType": "hiddenField",
+              "fieldName": "=Appointment ID"
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -540,
+        -380
+      ],
+      "id": "f401a462-5d93-4b7a-b1ed-2cdbb1278609",
+      "name": "Reschedule",
+      "webhookId": "719525ce-3dce-4fc7-b7ef-bfb55c309aad"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg",
+          "mode": "list",
+          "cachedResultName": "App Patients",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg/edit#gid=0"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1240,
+        -400
+      ],
+      "id": "cf6afd9e-d75f-4c95-920f-d78b3e9c816d",
+      "name": "Patients Appointments",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "2VYHLufNrAnUbq0G",
+          "name": "Google Sheets Trigger account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg",
+          "mode": "list",
+          "cachedResultName": "App Patients",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Patient ID": "={{ $('Confirm').item.json.query['Patient ID'] }}",
+            "Confirm": "={{ $('Confirm').item.json.query.answer }}",
+            "Appoinment ID": "={{ $('Confirm').item.json.query.appointmentID }}",
+            "Reschedule": "No",
+            "Cancel": "No"
+          },
+          "matchingColumns": [
+            "Patient ID"
+          ],
+          "schema": [
+            {
+              "id": "Patient ID",
+              "displayName": "Patient ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Patient Name",
+              "displayName": "Patient Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone Number ",
+              "displayName": "Phone Number ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Appointment Date",
+              "displayName": "Appointment Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Appointment Time",
+              "displayName": "Appointment Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Provider ",
+              "displayName": "Provider ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Appoinment ID",
+              "displayName": "Appoinment ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Confirm",
+              "displayName": "Confirm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reschedule",
+              "displayName": "Reschedule",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cancel",
+              "displayName": "Cancel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -200,
+        -560
+      ],
+      "id": "bf08b899-175b-42f4-999a-a1c47e7a900e",
+      "name": "Confirm Status Update",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "D24OwHYdSgMDdRyU",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg",
+          "mode": "list",
+          "cachedResultName": "App Patients",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Patient ID": "={{ $('Cancel').item.json.query['Patient ID'] }}",
+            "Cancel": "={{ $('Cancel').item.json.query.answer }}",
+            "Confirm": "No",
+            "Reschedule": "No"
+          },
+          "matchingColumns": [
+            "Patient ID"
+          ],
+          "schema": [
+            {
+              "id": "Patient ID",
+              "displayName": "Patient ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Patient Name",
+              "displayName": "Patient Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone Number ",
+              "displayName": "Phone Number ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Appointment Date",
+              "displayName": "Appointment Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Appointment Time",
+              "displayName": "Appointment Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Provider ",
+              "displayName": "Provider ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Appoinment ID",
+              "displayName": "Appoinment ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Confirm",
+              "displayName": "Confirm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reschedule",
+              "displayName": "Reschedule",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cancel",
+              "displayName": "Cancel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -200,
+        -220
+      ],
+      "id": "6cbd5afa-11db-49d1-823f-82973cc169aa",
+      "name": "Cancel Status Update",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "D24OwHYdSgMDdRyU",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "saif.cool95@gmail.com",
+          "mode": "list",
+          "cachedResultName": "saif.cool95@gmail.com"
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        -1040,
+        -400
+      ],
+      "id": "b419f4b5-af60-489f-9f7f-d4d1cd2d6f32",
+      "name": "Create an event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "qN0SnBO4yZnXvyft",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -520,
+        -40
+      ],
+      "id": "557d4154-f871-45a2-a608-be5ed6bee971",
+      "name": "Schedule Trigger",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg",
+          "mode": "list",
+          "cachedResultName": "App Patients",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -340,
+        -40
+      ],
+      "id": "9565137b-4550-49b9-a080-9b4e190d4da8",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "D24OwHYdSgMDdRyU",
+          "name": "Google Sheets account 3"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const today = new Date();\ntoday.setHours(0, 0, 0, 0); // Normalize to 00:00\n\nreturn items.filter(item => {\n  const data = item.json;\n\n  const rescheduleDate = data['Reschedule'];\n  const appointmentDate = data['Appointment Date'];\n\n  // Choose rescheduleDate if available, else use appointmentDate\n  const dateStr = rescheduleDate || appointmentDate;\n  if (!dateStr) return false;\n\n  const apptDate = new Date(dateStr);\n  apptDate.setHours(0, 0, 0, 0);\n\n  const diffDays = (apptDate - today) / (1000 * 60 * 60 * 24);\n  return diffDays === 1;\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        -40
+      ],
+      "id": "a6005284-59cb-47fc-be15-170e4422e037",
+      "name": "Code1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "subject": "Your appointment is tomorrow",
+        "message": "=Hi,  This is a friendly reminder that your appointment is scheduled for tomorrow ({{ $json[\"Reschedule\"] || $json[\"Appointment Date\"] }}).  If you need to reschedule or cancel, please use the link below.  Thank you!",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        -40
+      ],
+      "id": "5eeba0bc-62f7-4209-9397-268b23eddd72",
+      "name": "Send a message2",
+      "webhookId": "7aeb1ca4-ff35-414b-bcdd-cce502933039",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "A7QcM8TfC6CSYSCX",
+          "name": "Gmail account 3"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const date = $json['New Date'];\nlet time = $json['New Time']; // e.g. \"4:00 PM\" or \"16:00\"\n\n// Convert AM/PM format if present\nconst match = time.match(/^(\\d{1,2}):(\\d{2})(?:\\s*(AM|PM))?$/i);\nif (!match) throw new Error('Invalid time format: ' + time);\n\nlet h = parseInt(match[1], 10);\nconst m = parseInt(match[2], 10);\nconst ampm = match[3] ? match[3].toUpperCase() : null;\n\nif (ampm === 'PM' && h < 12) h += 12;\nif (ampm === 'AM' && h === 12) h = 0;\n\nconst isoStart = new Date(`${date}T${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:00`).toISOString();\n\nreturn [{\n  json: {\n    appointmentID: $json.formQueryParameters.appointmentID,\n    patientID: $json.formQueryParameters[\"Patient ID\"],\n    newStart: isoStart,\n    newEnd: new Date(new Date(isoStart).getTime() + 30 * 60 * 1000).toISOString(),\n    email: $json['Email']\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -380,
+        -380
+      ],
+      "id": "83e73943-1537-4907-b5b2-db4a27213b64",
+      "name": "QueryParameters"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Patients Appointments').item.json.Email }}",
+        "subject": "=Your Appointment is Scheduled on {{ $('Patients Appointments').item.json['Appointment Date'] }}",
+        "message": "=<!DOCTYPE html> <html lang=\"en-US\"> <head>   <meta charset=\"UTF-8\">   <title>Appointment Reminder</title>   <style>     body {       margin: 0;       padding: 0;       background-color: #f2f3f8;       font-family: 'Open Sans', sans-serif;     }     a:hover { text-decoration: underline !important; }     .wrapper {       max-width: 670px;       margin: 0 auto;       background: #ffffff;       border-radius: 8px;       box-shadow: 0 4px 12px rgba(0,0,0,0.05);       overflow: hidden;     }     .header {       background: #0063B1;       padding: 20px;       text-align: center;       color: #ffffff;     }     .header img {       width: 60px;       margin-bottom: 10px;     }     .content {       padding: 30px;       color: #333333;       line-height: 1.6;     }     .title {       font-size: 22px;       margin-bottom: 10px;       color: #0063B1;     }     .details {       margin: 20px 0;       border-collapse: collapse;       width: 100%;     }     .details td {       padding: 8px 5px;       border-bottom: 1px solid #eeeeee;     }     .details td.label {       font-weight: bold;       color: #555555;       width: 40%;     }     .buttons {       text-align: center;       margin: 30px 0;     }     .btn {       display: inline-block;       padding: 12px 24px;       color: #ffffff !important;       border-radius: 5px;       text-decoration: none;       font-weight: bold;       margin: 0 8px;     }     .btn-confirm { background-color: #28a745; }     .btn-reschedule { background-color: #ffc107; color: #000 !important; }     .btn-cancel { background-color: #dc3545; }     .footer {       background: #f7f7f7;       padding: 20px;       font-size: 12px;       color: #777777;       text-align: center;     }   </style> </head> <body>   <table width=\"100%\" bgcolor=\"#f2f3f8\" cellpadding=\"0\" cellspacing=\"0\">     <tr>       <td align=\"center\" style=\"padding: 40px 0;\">         <table class=\"wrapper\">           <tr>             <td class=\"header\">               <img src=\"https://yourclinic.com/logo.png\" alt=\"Clinic Logo\">               <h1>Appointment Notification</h1>             </td>           </tr>           <tr>             <td class=\"content\">               <p class=\"title\">Hello {{ $('Patients Appointments').item.json['Patient Name'] }},</p>                <p>We’re looking forward to seeing you for your upcoming visit. Here are the details of your scheduled appointment:</p>                <table class=\"details\">                 <tr>                   <td class=\"label\">Patient Name:</td>                   <td>{{ $('Patients Appointments').item.json['Patient Name'] }}</td>                 </tr>                 <tr>                   <td class=\"label\">Date:</td>                   <td>{{ $('Patients Appointments').item.json['Appointment Date'] }}</td>                 </tr>                 <tr>                   <td class=\"label\">Time:</td>                   <td>{{ $('Patients Appointments').item.json['Appointment Time'] }}</td>                 </tr>                 <tr>                   <td class=\"label\">Provider:</td>                   <td>{{ $('Patients Appointments').item.json['Provider '] }}</td>                 </tr>                 <tr>                   <td class=\"label\">Address:</td>                   <td>123 Main St, Anytown, USA 90210</td>                 </tr>                 <tr>                   <td class=\"label\">Phone Number:</td>                   <td>(555) 123‑4567</td>                 </tr>               </table>                <div class=\"buttons\">                 <a href=\"https://periscope-tech.app.n8n.cloud/webhook/f0616050-ffa1-4f17-a199-9a2bc3ef3241//webhook/confirm?appointmentID={{ $json.id }}&answer=yes&Patient ID={{ $('Patients Appointments').item.json['Patient ID'] }}&Email={{ $('Patients Appointments').item.json.Email }}\"                    class=\"btn btn-confirm\">                   Confirm Appointment                 </a>                 <a href=\"https://periscope-tech.app.n8n.cloud/form/719525ce-3dce-4fc7-b7ef-bfb55c309aad?appointmentID={{ $json.id }}&Patient ID={{ $('Patients Appointments').item.json['Patient ID'] }}\"                    class=\"btn btn-reschedule\">                   Reschedule Visit                 </a>                 <a href=\"https://periscope-tech.app.n8n.cloud/webhook/2591b3a5-3339-428f-af34-9e3e0234cd38/webhook/cancel?appointmentID={{ $json.id }}&Patient ID={{ $('Patients Appointments').item.json['Patient ID'] }}&Email={{ $('Patients Appointments').item.json.Email }}&answer=yes\"                    class=\"btn btn-cancel\">                   Cancel Appointment                 </a>               </div>                <p>                 Please confirm, reschedule, or cancel your visit at least 24 hours in advance to avoid any cancellation fees.               </p>                <p>                 If you have questions, feel free to reach out. We're here to help.               </p>                <p>                 Warm regards,<br>                 <strong> Clinic Team</strong><br>                 (555) 123‑4567<br>                 <a href=\"mailto:support@yourclinic.com\">support@yourclinic.com</a>               </p>             </td>           </tr>           <tr>             <td class=\"footer\">               <p>&copy; {{ $now.split('T')[0].slice(0,4) }} Your Clinic • 123 Main St, Anytown, USA 90210</p>               <p>Please do not reply to this email. For assistance, contact us directly.</p>             </td>           </tr>         </table>       </td>     </tr>   </table> </body> </html>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -800,
+        -400
+      ],
+      "id": "0590be92-13c5-487b-aa51-72ace6f21744",
+      "name": "Appointment Email",
+      "webhookId": "503b7d4f-4ec6-4075-8303-84163e68a6b5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "A7QcM8TfC6CSYSCX",
+          "name": "Gmail account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('QueryParameters').item.json.email }}",
+        "subject": "Your appointment has been rescheduled!",
+        "message": "=<p style=\"font-family: Arial, sans-serif; font-size: 16px; line-height: 24px;\">\n  Hi,\n</p>\n\n<p style=\"font-family: Arial, sans-serif; font-size: 16px; line-height: 24px;\">\n  Your appointment has been successfully rescheduled to: \n  <strong>{{ $json.Reschedule }}</strong> at \n  <strong>{{ $('Date and Time format').item.json.time }}</strong>\n</p>\n\n<p style=\"font-family: Arial, sans-serif; font-size: 16px; line-height: 24px;\">\n  Thanks,<br>\n  [Clinic Name]\n</p>\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        280,
+        -380
+      ],
+      "id": "3c1bcf80-6f39-4066-aa8b-ffb84c81d5c2",
+      "name": "Reschedule Email",
+      "webhookId": "8e46d9c6-423f-4fd8-bb5b-0a6fae97d6f0",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "A7QcM8TfC6CSYSCX",
+          "name": "Gmail account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "15f9552b-a05e-4860-b9c8-a732dacaa5d1",
+              "name": "query['Patient ID']",
+              "value": "={{ $json.query['Patient ID'] }}",
+              "type": "string"
+            },
+            {
+              "id": "ac383443-09b0-40b6-bbcc-b969fef74968",
+              "name": "query.answer",
+              "value": "={{ $json.query.answer }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -380,
+        -220
+      ],
+      "id": "a3eeaa61-126d-42d4-a625-a5b20605871c",
+      "name": "Query Fields _Cancel"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c0d82176-ab42-45e0-83b2-c436aff3a44e",
+              "name": "appointmentID",
+              "value": "={{ $json.query.appointmentID }}\n",
+              "type": "string"
+            },
+            {
+              "id": "4f5b26ca-e4f3-4a00-ae57-cb5a181b3383",
+              "name": "query.answer",
+              "value": "={{ $json.query.answer }}",
+              "type": "string"
+            },
+            {
+              "id": "79faa271-492c-4ada-ac5f-aca50233a2da",
+              "name": "query['Patient ID']",
+              "value": "={{ $json.query['Patient ID'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -380,
+        -560
+      ],
+      "id": "3e994ed0-dd05-4999-bab5-41064c861093",
+      "name": "Query Fields_Confirm"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Appointment Confirmed!\nThank you for confirming your appointment.",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -20,
+        -560
+      ],
+      "id": "ab894a74-5272-404d-b51a-1a40898516dd",
+      "name": "Respond to Confrim"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "We have successfully cancelled your appointment",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -20,
+        -220
+      ],
+      "id": "0d318dd6-34e8-40ad-95c1-06c01606d49c",
+      "name": "Respond to Cancel"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg",
+          "mode": "list",
+          "cachedResultName": "App Patients",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k0T0IzK3X5ubESs0ZNmBVEHKUuq2X5REatxt48H9egg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Reschedule": "={{ $json.date }}",
+            "Patient ID": "={{ $('QueryParameters').item.json.patientID }}",
+            "Confirm": "No",
+            "Cancel": "No"
+          },
+          "matchingColumns": [
+            "Patient ID"
+          ],
+          "schema": [
+            {
+              "id": "Patient ID",
+              "displayName": "Patient ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Patient Name",
+              "displayName": "Patient Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone Number ",
+              "displayName": "Phone Number ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Appointment Date",
+              "displayName": "Appointment Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Appointment Time",
+              "displayName": "Appointment Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Provider ",
+              "displayName": "Provider ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Appoinment ID",
+              "displayName": "Appoinment ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Confirm",
+              "displayName": "Confirm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reschedule",
+              "displayName": "Reschedule",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cancel",
+              "displayName": "Cancel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        100,
+        -380
+      ],
+      "id": "4ea8cb9c-1b53-4ad9-9c7f-51b6dc0d5044",
+      "name": "Reschedule Status Update",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "D24OwHYdSgMDdRyU",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Fetch all input bundles\nconst all = $input.all(); // or items parameter in Make's Code module\n\n// Map each item to a new object with formatted date/time\nconst output = all.map(item => {\n  const dt = new Date(item.json.start.dateTime);\n  \n  // Format date:\n  const MM = String(dt.getMonth() + 1).padStart(2, '0');\n  const DD = String(dt.getDate()).padStart(2, '0');\n  const YYYY = dt.getFullYear();\n\n  // Format time:\n  let hh = dt.getHours();\n  const ampm = hh >= 12 ? 'PM' : 'AM';\n  hh = hh % 12 || 12;\n  const mm = String(dt.getMinutes()).padStart(2, '0');\n  const time = `${hh}:${mm} ${ampm}`;\n\n  return {\n    json: {\n      // Include other fields if needed:\n      id: item.json.id,\n      formatted: `${MM}/${DD}/${YYYY} ${time}`,\n      date: `${MM}/${DD}/${YYYY}`,\n      time: time\n    }\n  };\n});\n\n// Return array of objects properly\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        -380
+      ],
+      "id": "51347a09-cfcd-4f1b-84a3-b616d758e5c6",
+      "name": "Date and Time format"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Confirm').item.json.query.Email }}",
+        "subject": "Appointment Confirmed!",
+        "message": "<p style=\"font-family: Arial, sans-serif; font-size: 16px; line-height: 24px;\">   Hi, </p>  <p style=\"font-family: Arial, sans-serif; font-size: 16px; line-height: 24px;\"> Thank you for confirming your appointment. </p>  <p style=\"font-family: Arial, sans-serif; font-size: 16px; line-height: 24px;\">   Thanks,<br>   [Clinic Name] </p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        200,
+        -560
+      ],
+      "id": "a0261582-a5f0-4857-8a84-358e889f5e79",
+      "name": "Confirmation Email",
+      "webhookId": "47509920-c3d9-4c75-8f64-39de33663894",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "A7QcM8TfC6CSYSCX",
+          "name": "Gmail account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "= {{ $('Cancel').item.json.query.Email }}",
+        "subject": "Appointment Canceled",
+        "message": "=<p style=\"font-family: Arial, sans-serif; font-size: 16px; line-height: 24px;\">\n  Hi,\n</p>\n\n<p style=\"font-family: Arial, sans-serif; font-size: 16px; line-height: 24px;\">\n  you have canceled the appointment scheduled \n</p>\n\n<p style=\"font-family: Arial, sans-serif; font-size: 16px; line-height: 24px;\">\n  Thanks,<br>\n  [Clinic Name]\n</p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        200,
+        -220
+      ],
+      "id": "f2887e94-0828-4cd1-a7c8-aade3e9ad8c8",
+      "name": "Cancel Email",
+      "webhookId": "31608731-2166-4269-a207-cf223355e201",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "A7QcM8TfC6CSYSCX",
+          "name": "Gmail account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Confirm": {
+      "main": [
+        [
+          {
+            "node": "Query Fields_Confirm",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cancel": {
+      "main": [
+        [
+          {
+            "node": "Query Fields _Cancel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update an event": {
+      "main": [
+        [
+          {
+            "node": "Date and Time format",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reschedule": {
+      "main": [
+        [
+          {
+            "node": "QueryParameters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Patients Appointments": {
+      "main": [
+        [
+          {
+            "node": "Create an event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Confirm Status Update": {
+      "main": [
+        [
+          {
+            "node": "Respond to Confrim",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cancel Status Update": {
+      "main": [
+        [
+          {
+            "node": "Respond to Cancel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an event": {
+      "main": [
+        [
+          {
+            "node": "Appointment Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    },
+    "QueryParameters": {
+      "main": [
+        [
+          {
+            "node": "Update an event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query Fields _Cancel": {
+      "main": [
+        [
+          {
+            "node": "Cancel Status Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query Fields_Confirm": {
+      "main": [
+        [
+          {
+            "node": "Confirm Status Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reschedule Status Update": {
+      "main": [
+        [
+          {
+            "node": "Reschedule Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Cancel": {
+      "main": [
+        [
+          {
+            "node": "Cancel Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Confrim": {
+      "main": [
+        [
+          {
+            "node": "Confirmation Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date and Time format": {
+      "main": [
+        [
+          {
+            "node": "Reschedule Status Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b78cebdf-e535-49be-85b0-cb167149e76d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "97e211b4923a452cd431081d5d98622fdd860f0ce0c43b61c64efdfdf1c20b45"
+  },
+  "id": "8CfdqBfQYAaefPph",
+  "tags": []
+}
