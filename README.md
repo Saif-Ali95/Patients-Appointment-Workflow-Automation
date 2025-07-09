@@ -121,6 +121,9 @@ Add logging: insert additional nodes e.g. “Set” or “Webhook Response” fo
 💾 Backup & Versioning
 Your workflow is already versioned as part of this GitHub repository.
 
+![image](https://github.com/user-attachments/assets/6a547050-5a6f-4448-9304-c3c7f28fcd4d)
+
+
 To use in a new n8n instance:
 
 Import JSON file via the n8n Editor
