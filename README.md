@@ -46,6 +46,7 @@ Customize Email Templates
 Adjust the Appointment, Reschedule, and Cancel email nodes
 
 🕑 Execution Flow
+
 A. 🆕 New Appointment Flow
 Webhook triggers upon new booking
 Google Sheets Query retrieves related row
